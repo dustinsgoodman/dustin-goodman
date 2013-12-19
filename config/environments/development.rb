@@ -26,4 +26,12 @@ Mysite::Application.configure do
   # This option may cause significant delays in view rendering with a large
   # number of complex assets.
   config.assets.debug = true
+
+  # Configure rack-cors middleware to fix CORS issue created by using Rails with Angular
+  config.middleware.use Rack::Cors do
+    allow do
+      origins 'localhost:9000'
+      resource '*', :headers => :any, :methods => [:get, :post, :options, :delete]
+    end
+  end
 end
