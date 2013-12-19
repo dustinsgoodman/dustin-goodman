@@ -7,6 +7,8 @@
 // use this if you want to recursively match all subfolders:
 // 'test/spec/**/*.js'
 
+var proxySnippet = require('grunt-connect-proxy/lib/utils').proxyRequest;
+
 module.exports = function (grunt) {
 
   // Load grunt tasks automatically
@@ -59,16 +61,43 @@ module.exports = function (grunt) {
       options: {
         port: 9000,
         // Change this to '0.0.0.0' to access the server from outside.
-        hostname: 'localhost',
+        hostname: '0.0.0.0',
         livereload: 35729
       },
+      proxies: [{
+        context: '/api',
+        host: '0.0.0.0',
+        port: 3000,
+        https: false,
+        changeOrigin: false
+        xforward: false
+      }],
       livereload: {
         options: {
           open: true,
           base: [
             '.tmp',
             '<%= yeoman.app %>'
-          ]
+          ],
+          middleware: function(connect, options) {
+            var middlewares = [];
+            var directory = options.directory || options.base[options.base.length - 1];
+            if (!Array.isArray(options.base)) {
+              options.base = [options.base];
+            }
+            options.base.forEach(function(base) {
+              // Serve static files.
+              middlewares.push(connect.static(base));
+            });
+
+            // Setup the proxy
+            middlewares.push(require('grunt-connect-proxy/lib/utils').proxyRequest);
+
+            // Make directory browse-able.
+            middlewares.push(connect.directory(directory));
+
+            return middlewares;
+          }
         }
       },
       test: {
@@ -348,6 +377,7 @@ module.exports = function (grunt) {
 
     grunt.task.run([
       'clean:server',
+      'configureProxies',
       'concurrent:server',
       'autoprefixer',
       'connect:livereload',
