@@ -22,4 +22,11 @@ DustinGoodman::Application.configure do
   # Raise an error on page load if there are pending migrations
   config.active_record.migration_error = :page_load
 
+  # Configure rack-cors middleware to fix CORS issue created by using Rails with Angular
+  config.middleware.use Rack::Cors do
+    allow do
+      origins 'localhost:9000'
+      resource '*', :headers => :any, :methods => [:get, :post, :options, :delete]
+    end
+  end
 end
