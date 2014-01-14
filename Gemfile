@@ -23,3 +23,8 @@ gem 'mysql2', '~> 0.3.14'
 
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'
+
+group :development do
+  # Middleware
+  gem "rack-cors", "~> 0.2.9"
+end
