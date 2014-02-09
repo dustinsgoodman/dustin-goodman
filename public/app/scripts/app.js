@@ -1,12 +1,14 @@
 'use strict';
 
-angular.module('dustinGoodmanApp', [
+var app = angular.module('dustinGoodmanApp', [
   'ngCookies',
   'ngResource',
+  'ngRoute',
   'ngSanitize',
-  'ngRoute'
-])
-  .config(['$routeProvider', function ($routeProvider) {
+  'ui.bootstrap'
+]);
+
+app.config(['$routeProvider', function ($routeProvider) {
     $routeProvider
       .when('/', {
         templateUrl: 'views/main.html',
