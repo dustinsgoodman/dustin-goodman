@@ -70,3 +70,5 @@ $ rails g devise User
 
 update devise handlers for authentication avoid flash messages and redirection (40b1ba55db990cd4ba06ba0770ad958164e80838)
 add token based authentication (715030a2e1af41ea1688de71fa0071c6dc78482b)
+
+```rails g model blog_post```
