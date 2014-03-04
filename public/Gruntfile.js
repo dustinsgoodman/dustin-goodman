@@ -345,19 +345,19 @@ module.exports = function (grunt) {
     less: {
       development: {
         options: {
-          paths: ["<%= yeoman.app %>/styles"]
+          paths: ['<%= yeoman.app %>/styles']
         },
         files: {
-          "<%= yeoman.app %>/styles/main.css": "<%= yeoman.app %>/styles/main.less"
+          '<%= yeoman.app %>/styles/main.css': '<%= yeoman.app %>/styles/main.less'
         }
       },
       production: {
         options: {
-          paths: ["<%= yeoman.app %>/styles"],
+          paths: ['<%= yeoman.app %>/styles'],
           cleancss: true
         },
         files: {
-          "<%= yeoman.dist %>/styles/main.css": "<%= yeoman.app %>/styles/main.less"
+          '<%= yeoman.dist %>/styles/main.css': '<%= yeoman.app %>/styles/main.less'
         }
       }
     },
