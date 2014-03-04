@@ -1,0 +1,73 @@
+<header class="navbar navbar-default" id="navbar">
+  <div class="navbar-container" id="navbar-container">
+    <div class="navbar-header pull-left">
+      <a href="#" class="navbar-brand">
+        <img src="/images/logo.png" srcset="/images/logo@2x.png 2x" alt="Clickscape Logo" height="25px">
+      </a><!-- /.brand -->
+    </div><!-- /.navbar-header -->
+
+    <div class="navbar-header pull-right" role="navigation">
+      <ul class="nav ace-nav">
+        <li class="light-blue">
+          <a data-toggle="dropdown" class="dropdown-toggle">
+            <span class="user-info">
+              <small>Welcome,</small>
+              {{ user.firstName }}
+            </span>
+            <i class="icon-caret-down"></i>
+          </a>
+          <ul class="user-menu pull-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
+            <li data-access-level="{{permissions.accessLevels.agent}}">
+              <a href="/#/account">
+                <i class="icon-user"></i>
+                Account
+              </a>
+            </li>
+            <li class="hide" data-access-level="{{permissions.accessLevels.agent}}">
+              <a href="/#/settings">
+                <i class="icon-cog"></i>
+                Settings
+              </a>
+            </li>
+            <li class="divider"></li>
+            <li data-access-level="{{permissions.accessLevels.agent}}">
+              <a href="#" data-ng-click="logout()">
+                <i class="icon-off"></i>
+                Logout
+              </a>
+            </li>
+          </ul>
+        </li>
+      </ul><!-- /.ace-nav -->
+    </div><!-- /.navbar-header -->
+  </div><!-- /.container -->
+</header>
+
+<section class="main-container" id="main-container">
+  <div class="main-container-inner">
+    <a class="menu-toggler" id="menu-toggler"
+      data-ng-class="{display:menuDisplay}"
+      data-ng-click="menuDisplay = !menuDisplay">
+      <span class="menu-text"></span>
+    </a>
+    <div data-sidebar></div>
+
+    <div class="main-content">
+      <div class="breadcrumbs" id="breadcrumbs">
+        <div class="nav-search" id="nav-search">
+          <!-- <form class="form-search">
+            <span class="input-icon">
+              <input type="text" placeholder="Search ..." class="nav-search-input" id="nav-search-input" autocomplete="off" />
+              <i class="icon-search nav-search-icon"></i>
+            </span>
+          </form> -->
+        </div><!-- #nav-search -->
+      </div>
+
+      <div class="page-content">
+        <div class="row" data-ng-transclude="">
+        </div><!-- /.row -->
+      </div><!-- /.page-content -->
+    </div><!-- /.main-content -->
+  </div><!-- /.main-container-inner -->
+</section><!-- /.main-container -->

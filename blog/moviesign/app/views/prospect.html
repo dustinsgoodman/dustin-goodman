@@ -1,0 +1,325 @@
+<div class="row">
+  <div class="full-col">
+    <h2 class="header lighter blue">
+      <span class='user'>
+        <img alt='User Avatar' src='/avatars/avatar2.png'>
+      </span>
+      {{prospect.firstName}} {{prospect.lastName}}
+      <small>
+        {{prospect.email || "No Email Available"}} &middot; {{prospect.phone || "No Phone Available"}}
+      </small>
+      <span class='pull-right label label-xlg label-primary'>{{profile.score.score.total | number:0}}</span>
+    </h2>
+  </div>
+</div>
+
+<div class="row">
+  <div class="half-col">
+    <div class="widget-box transparent" id="recent-box">
+
+      <div class="widget-header">
+        <h4 class="lighter smaller">
+          <i class="icon-rss orange"></i>
+          Notes
+        </h4>
+      </div>
+
+      <div class="widget-body">
+        <div class="widget-main padding-4">
+          <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; max-height: 15em;">
+            <div class="comments" style="overflow: auto; width: auto; max-height: 15em;">
+              <div class="itemdiv commentdiv" data-ng-repeat="note in notes">
+                <!-- <div class="user">
+                  <img alt="Bob Doe's Avatar" src="assets/avatars/avatar.png">
+                </div> -->
+
+                <div class="body">
+                  <div class="name">
+                    <span class="blue">{{note.creatorName}}</span>
+                  </div>
+
+                  <div class="time">
+                    <i class="icon-time"></i>
+                    <span class="green">{{note.timestamp | prettyDate}}</span>
+                  </div>
+
+                  <div class="text">
+                    <i class="icon-quote-left"></i>
+                    {{note.body}}
+                  </div>
+                </div>
+
+                <div class="tools">
+                  <div class="action-buttons bigger-125">
+                    <!-- <a href="#">
+                      <i class="icon-pencil blue"></i>
+                    </a> -->
+
+                    <a data-ng-click="removeNote(note.noteId, $index)">
+                      <i class="icon-trash red"></i>
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="slimScrollBar ui-draggable" style="background-color: rgb(0, 0, 0); width: 7px; position: absolute; top: 0px; opacity: 0.4; display: none; border-top-left-radius: 7px; border-top-right-radius: 7px; border-bottom-right-radius: 7px; border-bottom-left-radius: 7px; z-index: 99; right: 1px; height: 288.46153846153845px; background-position: initial initial; background-repeat: initial initial;"></div>
+              <div class="slimScrollRail" style="width: 7px; height: 100%; position: absolute; top: 0px; display: none; border-top-left-radius: 7px; border-top-right-radius: 7px; border-bottom-right-radius: 7px; border-bottom-left-radius: 7px; background-color: rgb(51, 51, 51); opacity: 0.2; z-index: 90; right: 1px; background-position: initial initial; background-repeat: initial initial;"></div>
+            </div>
+          </div>
+
+          <div class="hr hr8"></div>
+          <form data-ng-submit="addNote(newNote)">
+            <div class="form-actions">
+              <div class="input-group">
+                <input placeholder="Type your note here ..." type="text" class="form-control" name="note" data-ng-model="newNote">
+                <span class="input-group-btn">
+                  <button class="btn btn-sm btn-info no-radius" type="submit">
+                    <i class="icon-share-alt"></i>
+                    Add
+                  </button>
+                </span>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="half-col">
+    <div class="row">
+      <div class="quarter-small-col">
+        <label for="status">Status:</label>
+      </div>
+      <div class="half-col">
+        <select class="form-control" id="status" data-ng-options="s for s in statuses" data-ng-model="prospect.status" data-ng-change="updateStatus()"></select>
+      </div>
+    </div>
+    <div class="row">
+      <div class="quarter-small-col">
+        Grade:
+      </div>
+      <div class="half-col">
+        <a data-ng-click="clearGrade()"><span class="glyphicon glyphicon-ban-circle"></span></a>
+        <rating value="prospect.grade" max="5"></rating>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row" data-access-level="{{permissions.accessLevels.admin}}">
+  <div class="full-col">
+    <h3 class="header lighter blue">Assignment</h3>
+    <form class="form-inline" role="form" data-ng-submit="assignAgent()">
+      <div class="form-group">
+        <label class="sr-only" for="agent">
+          Agent
+        </label>
+        <select class="form-control" id="agent" data-ng-model="agent" data-ng-options="(agent.firstName + ' ' + agent.lastName) for agent in agents">
+        </select>
+      </div>
+      <button type="submit" class="btn btn-default" data-access-level="{{permissions.accessLevels.admin}}">Assign</button>
+    </form>
+  </div>
+</div>
+
+<div class="row hide">
+  <div class="full-col">
+    <h3 class="header lighter blue">Communications</h3>
+
+    <div class="table-responsive">
+      <div class="table-header">
+        Call Log
+        <span class="pull-right">
+          <button class="btn">Call Prospect</button>
+          <button class="btn">Log Call</button>
+          <button class="btn">Send Text Message</button>
+        </span>
+      </div>
+      <table class="table table-striped table-bordered table-hover">
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Status</th>
+            <th>Notes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="call in communications.callLog">
+            <td>{{call.date}}</td>
+            <td>{{call.status}}</td>
+            <td>{{call.notes}}</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="row">
+        <div class="half-col">
+          <div class="dataTables_info">Showing 1 to 2 of 2 entries</div>
+        </div>
+        <div class="half-col">
+          <div class="dataTables_paginate paging_bootstrap">
+            <ul class="pagination">
+              <li class="prev disabled">
+                <a href="#"><i class="icon-double-angle-left"></i></a>
+              </li>
+              <li class="active">
+                <a href="#">1</a>
+              </li>
+              <li class="next">
+                <a href="#"><i class="icon-double-angle-right"></i></a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="table-responsive">
+      <div class="table-header">
+        Email Log
+        <span class="pull-right">
+          <button class="btn">Send Email</button>
+        </span>
+      </div>
+      <table class="table table-striped table-bordered table-hover">
+        <thead>
+          <tr>
+            <th>Unread</th>
+            <th>Date</th>
+            <th>From</th>
+            <th>To</th>
+            <th>Subject</th>
+            <th>Content</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="email in communications.emailLog">
+            <td class="align-center middle"><icon ng-show="email.unread" class="icon-circle blue"></icon></td>
+            <td>{{email.date}}</td>
+            <td>{{email.from}}</td>
+            <td>{{email.to}}</td>
+            <td>{{email.subject}}</td>
+            <td>{{email.content}}</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="row">
+        <div class="half-col">
+          <div class="dataTables_info">Showing 1 to 3 of 3 entries</div>
+        </div>
+        <div class="half-col">
+          <div class="dataTables_paginate paging_bootstrap">
+            <ul class="pagination">
+              <li class="prev disabled">
+                <a href="#"><i class="icon-double-angle-left"></i></a>
+              </li>
+              <li class="active">
+                <a href="#">1</a>
+              </li>
+              <li class="next">
+                <a href="#"><i class="icon-double-angle-right"></i></a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="row" data-ng-if="!!profile">
+  <div class="full-col">
+    <h3 class="header lighter blue">Prospect Data</h3>
+  </div>
+
+  <div class="full-col">
+    <h4 class="header lighter blue">Most Viewed Property</h4>
+    <div class="row">
+      <div class="col-md-3 listing-photo-area">
+        <img data-ng-src="{{photos[0].sizes.small.url}}" width="{{photos[0].sizes.small.width}}" height="{{photos[0].sizes.small.height}}" >
+      </div>
+      <div class="col-md-9 listing-photo-area">
+        <h5>
+          {{mostViewedProperty.address}},
+          {{mostViewedProperty.city}},
+          {{mostViewedProperty.state}}
+          {{mostViewedProperty.zip}}
+          &ndash;
+          <strong>{{mostViewedProperty.price | noDecimalCurrency}}</strong>
+        </h5>
+        <h6>
+          <span data-ng-if="mostViewedProperty.neighborhood">{{mostViewedProperty.neighborhood}},</span>
+          <span data-ng-if="mostViewedProperty.county">{{mostViewedProperty.county}} County</span>
+        </h6>
+        <p>
+          {{mostViewedProperty.beds}} Beds,
+          {{mostViewedProperty.fullBaths}} Baths,
+          {{mostViewedProperty.halfBaths}} Half Baths
+        </p>
+        <p>
+          Viewed Property <strong>{{mostViewedPropertyCount}}</strong> Times
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="full-col">
+    <h4 class="header lighter blue">Prospect Statistics</h4>
+
+    <div class="row">
+      <div class="half-col">
+        <ul class="list-unstyled">
+          <li><strong>Property Views Today:</strong> {{propertyViewCounts.today}}</li>
+          <li><strong>Property Views This Week:</strong> {{propertyViewCounts.thisWeek}}</li>
+          <li><strong>Property Views This Month:</strong> {{propertyViewCounts.thisMonth}}</li>
+          <li><strong>Total Property Views:</strong> {{propertyViewCounts.total}}</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="five-col">
+    <div id="map-div">
+      <div gmap locs="locations" opts="mapOpts"></div>
+    </div>
+  </div>
+  <div class="seven-col">
+    <div class="row">
+      <div class="half-col">
+        <div class="chart-container">
+          <div piechart title="Bedrooms" data="beds"></div>
+        </div>
+      </div>
+      <div class="half-col">
+        <div class="chart-container">
+          <div piechart title="Full Baths" data="fbaths"></div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="full-col">
+        <div class="chart-container price">
+          <div columnchart title="Price Distribution" data="prices"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="full-col">
+    <h3 class="header lighter blue">Prospect Activity</h3>
+  </div>
+  <div class="third-small-col" ng-repeat="feed in feeds">
+    <div widget title="{{feed.title}}">
+      <div class="panel-group">
+
+        <div data-ng-repeat="event in feed.stream">
+          <div data-feed-item="event" data-view="1"></div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

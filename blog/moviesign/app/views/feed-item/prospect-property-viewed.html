@@ -1,0 +1,72 @@
+<div class="zippy panel panel-default">
+
+  <div class="panel-heading" data-ng-click="toggleExpand()">
+    <span class="h4 panel-title">
+
+      <span data-ng-if="view == 0">
+        <a href="/#/prospect/{{prospect.prospectId}}" class="bolder">
+          {{prospect.firstName}} {{prospect.lastName}}
+        </a>
+        viewed
+      </span>
+      <a href='/#/listings/{{property.mlsId}}/{{property.mlsNum}}'>
+        {{property.address}}, {{property.city}}, {{property.state}} {{property.zip}}
+      </a>
+      <span class='smaller-80' data-ng-if="testMin(item.count) && item.count > 1">
+        [{{count}} times]
+      </span>
+    </span>
+    <br>
+    <div class='text-right pull-right smaller-75'>
+      {{time | prettyDate}}
+    </div>
+    <span class="collapse-arrow glyphicon" data-ng-class="{'glyphicon-chevron-right': !isExpanded, 'glyphicon-chevron-down': isExpanded}"></span>
+  </div>
+
+  <div class="panel-collapse collapse" data-ng-class="{'in': isExpanded}">
+    <div class="panel-body">
+      <ul class='list-unstyled'>
+        <li class='hide' data-ng-if='textExist(property.status)'>
+          <strong>Status:</strong> {{property.status}}
+        </li>
+        <li class='hide' data-ng-if='testExist(property.propertyType)'>
+          <strong>Property Type:</strong> {{property.propertyType}}
+        </li>
+        <li class='hide' data-ng-if='testExist(property.county)'>
+          <strong>County:</strong> {{property.county}}
+        </li>
+        <li data-ng-if='testExist(property.neighborhood)'>
+          <strong>Subdivision:</strong> {{property.neighborhood}}
+        </li>
+        <li class='hide' data-ng-if='testExist(property.schoolElem)'>
+          <strong>Elementary:</strong> {{property.schoolElem}}
+        </li>
+        <li class='hide' data-ng-if='testExist(property.schoolMiddle)'>
+          <strong>Middle:</strong> {{property.schoolMiddle}}
+        </li>
+        <li class='hide' data-ng-if='textExist(property.schoolHigh)'>
+          <strong>High:</strong> {{property.schoolHigh}}
+        </li>
+        <li data-ng-if='testExist(property.price)'>
+          <strong>Price:</strong> {{property.price | noDecimalCurrency}}
+        </li>
+        <li class='hide' data-ng-if='testExist(property.year)'>
+          <strong>Year Built:</strong> {{property.year}}
+        </li>
+        <li data-ng-if='testExist(property.beds)'>
+          <strong>Bedrooms:</strong> {{property.beds}}
+        </li>
+        <li data-ng-if='testExist(property.fullBaths)'>
+          <strong>Full Bathrooms:</strong> {{property.fullBaths}}
+        </li>
+        <li data-ng-if='testExist(property.halfBaths)'>
+          <strong>Half Bathrooms:</strong> {{property.halfBaths}}
+        </li>
+        <li class='hide' data-ng-if='testExist(property.basement)'>
+          <strong>Basement:</strong> {{property.basement}}
+        </li>
+      </ul>
+    </div>
+  </div>
+
+</div>
