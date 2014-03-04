@@ -50,15 +50,44 @@
 
           <div class="navbar-collapse collapse" data-collapse="isNavCollapsed">
             <ul class="nav navbar-nav navbar-right">
-              <li><a href="#">Log In</a></li>
-              <li><a href="#">Register</a></li>
+              <li><a href="/#/blog">Blog</a></li>
+              <li data-ng-if="!isLoggedIn"><a href="#">Log In</a></li>
+              <li data-ng-if="!isLoggedIn"><a href="/#/register">Register</a></li>
+              <li data-ng-if="isLoggedIn"><a href="#">Log Out</a></li>
             </ul>
           </div>
         </div>
       </nav>
     </header>
 
-    <div class="container" data-ng-view=""></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-2">
+          <img src="images/profile.jpg" alt="DG Pic" class="img-responsive img-thumbnail">
+
+          <nav class="sidebar">
+            <ul class="list-unstyled">
+              <li>
+                <a href="#">GitHub</a>
+              </li>
+              <li>
+                <a href="#">Facebook</a>
+              </li>
+              <li>
+                <a href="#">Twitter</a>
+              </li>
+              <li>
+                <a href="#">Google+</a>
+              </li>
+              <li>
+                <a href="#">Codecademy</a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+        <div class="col-md-10" data-ng-view=""></div>
+      </div>
+    </div>
   </div>
 
   <footer>
@@ -102,6 +131,8 @@
   <script src="scripts/controllers/main.js"></script>
   <script src="scripts/controllers/register.js"></script>  
   <script src="scripts/controllers/home.js"></script>
+  <script src="scripts/controllers/blog.js"></script>
+  <script src="scripts/controllers/blog_new.js"></script>
   <!-- endbuild -->
 </body>
 </html>
