@@ -1,0 +1,24 @@
+<div class="row" id="prospects">
+  <div class="full-col">
+    <h3 class="header smaller lighter blue">My Prospects</h3>
+
+    <div class="row">
+      <div class="full-col">
+        <h3 class="header lighter blue">Statistics</h3>
+      </div>
+      <div class="full-col">
+        <div columnchart title="Statuses" data="statuses"></div>
+      </div>
+    </div>
+
+    <div zippy summary="Usage Tips">
+      <ul>
+        <li>Sort the list in ascending/descending order by clicking on the column's header.</li>
+        <li>Sort on multiple columns by holding <code>shift</code> while selecting columns.</li>
+        <li>Search for prospects by clicking the down arrow found in the "Actions" column header.</li>
+      </ul>
+    </div>
+
+    <div class="gridStyle" ng-grid="gridOpts"></div>
+  </div>
+</div>

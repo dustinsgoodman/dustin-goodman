@@ -1,0 +1,66 @@
+<div id="login-box" class="login-box visible widget-box no-border">
+  <div class="widget-body">
+    <div class="widget-main">
+      <h4 class="header blue lighter bigger">
+        <i class="icon-coffee green"></i>
+        Please Enter Your Information
+      </h4>
+
+      <div class="space-6"></div>
+
+      <p class="red">{{error}}</p>
+
+      <form data-ng-submit="login()">
+        <fieldset>
+          <label class="block clearfix">
+            <span class="block input-icon input-icon-right">
+              <input type="email" class="form-control" name="email" placeholder="Email" data-ng-model="email">
+              <i class="icon-user"></i>
+            </span>
+          </label>
+
+          <label class="block clearfix">
+            <span class="block input-icon input-icon-right">
+              <input type="password" class="form-control" name="password" placeholder="Password" data-ng-model="password">
+              <i class="icon-lock"></i>
+            </span>
+          </label>
+
+          <div class="space"></div>
+
+          <div class="clearfix">
+            <label class="inline">
+              <input type="checkbox" class="ace" data-ng-model="rememberme">
+              <span class="lbl"> Remember Me</span>
+            </label>
+
+            
+            <button type="submit" class="width-35 pull-right btn btn-sm btn-primary">
+              <i class="icon-key"></i>
+              Login
+            </button>
+          </div>
+
+          <div class="space-4"></div>
+        </fieldset>
+      </form>
+
+    </div>
+
+    <div class="toolbar clearfix">
+      <div>
+        <a href="/#/forgot" class="forgot-password-link hide">
+          <i class="icon-arrow-left"></i>
+          I forgot my password
+        </a>
+      </div>
+
+      <div>
+        <a href="/#/register" class="user-signup-link hide">
+          I want to register
+          <i class="icon-arrow-right"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

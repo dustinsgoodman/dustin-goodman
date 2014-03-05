@@ -11,6 +11,7 @@ gem 'mysql2', '~> 0.3.14'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
+gem "devise", "~> 3.2.2"
 
 # To use Jbuilder templates for JSON
 # gem 'jbuilder'

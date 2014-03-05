@@ -1,0 +1,133 @@
+<div class="zippy panel panel-default">
+
+  <div class="panel-heading" data-ng-click="toggleExpand()">
+    <span class="h4 panel-title" data-ng-switch data-on="view">
+
+      <span data-ng-if="view == 0">
+        <a href="/#/prospect/{{prospect.prospectId}}" class="bolder">
+            {{prospect.firstName}} {{prospect.lastName}}
+        </a>
+      </span>
+      <span data-ng-bind-html="summaryDetails"></span>
+
+      <span class='smaller-80' data-ng-if="testMin(item.count) && item.count > 1">
+        [{{count}} times]
+      </span>
+    </span>
+    <br>
+    <div class='text-right pull-right smaller-75'>
+      {{time | prettyDate}}
+    </div>
+    <span class="collapse-arrow glyphicon" data-ng-class="{'glyphicon-chevron-right': !isExpanded, 'glyphicon-chevron-down': isExpanded}"></span>
+  </div>
+
+  <div class="panel-collapse collapse" data-ng-class="{'in': isExpanded}">
+    <div class="panel-body">
+      <ul class="list-unstyled">
+
+        <li data-ng-if="testExist(search.query)">
+          <strong>Keywords:</strong> {{search.query}}
+        </li>
+        <li data-ng-if="testExist(search.subdivision)">
+          <strong>Subdivision:</strong> {{search.subdivision}}
+        </li>
+        <li data-ng-if="testExist(search.city)">
+          <strong>City:</strong> {{search.city.toString()}}
+        </li> 
+        <li data-ng-if="testExist(search.state)">
+          <strong>State:</strong> {{search.state}}
+        </li>
+        <li data-ng-if="testExist(search.zip)">
+          <strong>Zip:</strong> {{search.zip}}
+        </li>
+        <li data-ng-if="testExist(search.county)">
+          <strong>County:</strong> {{search.county}}
+        </li>
+        <li data-ng-if="search.schools">
+          <strong>Schools:</strong> {{search.schools}}
+        </li>
+
+        <li data-ng-if="testMin(search.priceMin) && testMax(search.priceMax)">
+          <strong>Price:</strong> {{search.priceMin | noDecimalCurrency}} to {{search.priceMax | noDecimalCurrency}}
+        </li>
+        <li data-ng-if="testMin(search.priceMin)">
+          <strong>Min. Price:</strong> {{search.priceMin | noDecimalCurrency}}
+        </li>
+        <li data-ng-if="testMax(search.priceMax)">
+          <strong>Max. Price:</strong> {{search.priceMax | noDecimalCurrency}}
+        </li>
+
+        <li data-ng-if="testMin(search.bedsMin) && testMax(search.bedsMax)">
+          <strong>Bedrooms:</strong> {{search.bedsMin}} to {{search.bedsMax}}
+        </li>
+        <li data-ng-if="testMin(search.bedsMin)">
+          <strong>Min. Bedrooms:</strong> {{search.bedsMin}}
+        </li>
+        <li data-ng-if="testMax(search.bedsMax)">
+          <strong>Max. Bedrooms:</strong> {{search.bedsMax}}
+        </li>
+
+        <li data-ng-if="testMin(search.fullBathsMin) && testMax(search.fullBathsMax)">
+          <strong>Full Baths:</strong> {{search.fullBathsMin}} to {{search.fullBathsMax}}
+        </li>
+        <li data-ng-if="testMin(search.fullBathsMin)">
+          <strong>Min. Full Baths:</strong> {{search.fullBathsMin}}
+        </li>
+        <li data-ng-if="testMax(search.fullBathsMax)">
+          <strong>Max. Full Baths:</strong> {{search.fullBathsMax}}
+        </li>
+
+        <li data-ng-if="testMin(search.halfBathsMin) && testMax(search.halfBathsMax)">
+          <strong>Half Baths:</strong> {{search.halfBathsMin}} to {{search.halfBathsMax}}
+        </li>
+        <li data-ng-if="testMin(search.halfBathsMin)">
+          <strong>Min. Half Baths:</strong> {{search.halfBathsMin}}
+        </li>
+        <li data-ng-if="testMax(search.halfBathsMax)">
+          <strong>Max. Half Baths:</strong> {{search.halfBathsMax}}
+        </li>
+
+        <li data-ng-if="testMin(search.yearMin) && testMax(search.yearMax)">
+          <strong>Year Built:</strong> {{search.yearMin}} to {{search.yearMax}}
+        </li>
+        <li data-ng-if="testMin(search.yearMin)">
+          <strong>Min. Year Built:</strong> {{search.yearMin}}
+        </li>
+        <li data-ng-if="testMax(search.yearMax)">
+          <strong>Max. Year Built:</strong> {{search.yearMax}}
+        </li>
+
+        <li data-ng-if="testMin(search.lotSizeMin) && testMax(search.lotSizeMax)">
+          <strong>Lot Size:</strong> {{search.lotSizeMin}} to {{search.lotSizeMax}}
+        </li>
+        <li data-ng-if="testMin(search.lotSizeMin)">
+          <strong>Min. Lot Size:</strong> {{search.lotSizeMin}}
+        </li>
+        <li data-ng-if="testMax(search.lotSizeMax)">
+          <strong>Max. Lot Size:</strong> {{search.lotSizeMax}}
+        </li>
+
+
+        <li data-ng-if="testExist(search.basement)">
+          <strong>Basement:</strong> {{search.basement}}
+        </li>
+        <li data-ng-if="testExist(search.propertyType)">
+          <strong>Property Type:</strong> {{search.propertyType.toString()}}
+        </li>
+        <li data-ng-if="testExist(search.salesType)">
+          <strong>Sales Type:</strong> {{search.salesType.toString()}}
+        </li>
+        <li data-ng-if="testExist(search.status)">
+          <strong>Status:</strong> {{search.status}}
+        </li>
+        <li data-ng-if="testExist(search.location)">
+          <strong>Map:</strong>
+          <br>
+          <img data-ng-src="{{getMapLink(search.location)}}">
+        </li>
+
+      </ul>
+    </div>
+  </div>
+
+</div>

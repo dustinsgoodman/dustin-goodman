@@ -1,0 +1,19 @@
+<div class="row" id="dashboard">
+  <div class="third-small-col" ng-repeat="feed in feeds">
+    <div widget title="{{feed.title}}" data-infinite-scroll-callback="getHistory(feed, 50)">
+      <div class="panel-group">
+
+        <div data-ng-repeat="event in feed.stream">
+          <div data-feed-item="event" data-view="0"></div>
+        </div>
+
+        <div class="zippy panel panel-default" ng-class="{'hide': from === 0}">
+          <div class="panel-heading" data-ng-class="{'hide': feed.ctrl !== 'activity'}">
+            <a class="h4 center" data-ng-click="getHistory(feed, 50)">Click here to load more...</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

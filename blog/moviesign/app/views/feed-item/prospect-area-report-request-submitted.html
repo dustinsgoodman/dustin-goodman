@@ -1,0 +1,36 @@
+<div class="zippy panel panel-default">
+
+  <div class="panel-heading" data-ng-click="toggleExpand()">
+    <span class="h4 panel-title" data-ng-switch data-on="view">
+      <a href='/#/prospect/{{item.prospectId}}' class='bolder' data-ng-switch-when="0">
+        {{item.firstName}} {{item.lastName}}
+      </a>
+      <span class='bolder' data-ng-switch-when="1">
+        {{item.firstName}} {{item.lastName}}
+      </span>
+      submitted an area report request.
+      <span class='smaller-80' data-ng-if="testMin(item.count) && item.count > 1">
+        [{{item.count}} times]
+      </span>
+    </span>
+    <br>
+    <div class='text-right pull-right smaller-75'>
+      {{item.time | prettyDate}}
+    </div>
+    <span class="collapse-arrow glyphicon" data-ng-class="{'glyphicon-chevron-right': !isExpanded, 'glyphicon-chevron-down': isExpanded}"></span>
+  </div>
+
+  <div class="panel-collapse collapse" data-ng-class="{'in': isExpanded}">
+    <div class="panel-body">
+      <ul class="list-unstyled">
+        <li>
+          <strong>Email:</strong> {{item.email}}
+        </li>
+        <li>
+          <strong>Area:</strong> {{item.area}}
+        </li>
+      </ul>
+    </div>
+  </div>
+
+</div>

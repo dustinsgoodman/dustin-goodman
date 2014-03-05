@@ -2,12 +2,12 @@
   "node": true,
   "browser": true,
   "esnext": true,
-  "bitwise": true,
+  "bitwise": false,
   "camelcase": true,
   "curly": true,
   "eqeqeq": true,
   "immed": true,
-  "indent": 2,
+  "indent": false,
   "latedef": true,
   "newcap": true,
   "noarg": true,
@@ -19,6 +19,8 @@
   "trailing": true,
   "smarttabs": true,
   "globals": {
-    "angular": false
+    "angular": false,
+    "permissions": false,
+    "_": false
   }
 }

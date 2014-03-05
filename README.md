@@ -22,6 +22,7 @@ Preparing the angular app:
 * Followed [Rocky Jaiswal][1]'s blog article to configure Rails and Angular to work in harmony.
 * Followed [Daniel Morrison][2]'s articles to create an elegant Rails backend API.
 * Followed [Shelly Cloud][6]'s article on combining angular with Rails 4
+* Followed [Emil Soman][7]'s article "Building a Tested, Documented and Versioned JSON API Using Rails 4" with updates courtesy of [StackOverflow Question][8]
 
  [1]: http://rockyj.in/2013/10/24/angular_rails.html
  [2]: http://collectiveidea.com/blog/archives/2013/06/13/building-awesome-rails-apis-part-1/
@@ -29,3 +30,5 @@ Preparing the angular app:
  [4]: http://yeoman.io
  [5]: https://npmjs.org
  [6]: https://shellycloud.com/blog/2013/10/how-to-integrate-angularjs-with-rails-4
+ [7]: http://www.emilsoman.com/blog/2013/05/18/building-a-tested/
+ [8]: http://stackoverflow.com/questions/18931952/devise-token-authenticatable-deprecated-what-is-the-alternative

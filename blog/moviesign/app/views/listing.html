@@ -1,0 +1,79 @@
+<div class="row">
+  <div class="full-col">
+    <h1>
+      {{listing.property.streetAddress}},
+      {{listing.property.city}},
+      {{listing.property.state}}
+      {{listing.property.zip}}
+      &ndash;
+      <strong>{{listing.price | noDecimalCurrency}}</strong>
+    </h1>
+    <h2>
+      <span data-ng-if="listing.neighborhood">{{listing.neighborhood}},</span>
+      <span data-ng-if="listing.county">{{listing.county}} County</span>
+    </h2>
+    <h3>
+      {{listing.beds}} Beds,
+      {{listing.fullBaths}} Baths,
+      {{listing.halfBaths}} Half Baths
+    </h3>
+  </div>
+
+  <div class="col-md-8 listing-photo-area">
+    <img data-ng-src="{{photos[0].sizes.original.url}}" width="{{photos[0].sizes.original.width}}" height="{{photos[0].sizes.original.height}}"
+         class="listing-photo">
+  </div>
+
+  <div class="col-md-4">
+    <h4>Property at-a-glance</h4>
+    <dl class="dl-horizontal">
+      <dt>Status</dt>
+      <dd>{{listing.status}}</dd>
+      <dt>Status Date</dt>
+      <dd>{{listing.statusDate | date}}</dd>
+      <dt data-ng-if="listing.status == 'closed' && listing.closeDate">Close Date</dt>
+      <dd data-ng-if="listing.status == 'closed' && listing.closeDate">{{listing.closeDate | date}}</dd>
+      <dt data-ng-if="listing.status == 'closed' && listing.closePrice">Close Price</dt>
+      <dd data-ng-if="listing.status == 'closed' && listing.closePrice">{{listing.closePrice | currency}}</dd>
+      <dt>Circumstances</dt>
+      <dd>{{listing.circumstances}}</dd>
+      <dt>Sq. Ft.</dt>
+      <dd>{{listing.sqFtMin}}&ndash;{{listing.sqFtMax}}</dd>
+      <dt>Lot Size</dt>
+      <dd>{{listing.acresMin | number:2}}&ndash;{{listing.acresMax | number:2}}</dd>
+      <dt>Basement</dt>
+      <dd>{{listing.basement}}</dd>
+      <dt data-ng-if="listing.year">Year Built</dt>
+      <dd data-ng-if="listing.year">{{listing.year}}</dd>
+      <dt>Created At</dt>
+      <dd>{{listing.createdAt | date}}</dd>
+      <dt>Last Modified</dt>
+      <dd>{{listing.lastModified | date}}</dd>
+      <dt data-ng-if="listing.listingDate">Listing Date</dt>
+      <dd data-ng-if="listing.listingDate">{{listing.listingDate | date}}</dd>
+      <dt data-ng-if="listing.originalPrice">Original Price</dt>
+      <dd data-ng-if="listing.originalPrice">{{listing.originalPrice | currency}}</dd>
+      <dt>Elementary School</dt>
+      <dd>{{listing.schoolElem}}</dd>
+      <dt>Middle School</dt>
+      <dd>{{listing.schoolMiddle}}</dd>
+      <dt>High School</dt>
+      <dd>{{listing.schoolHigh}}</dd>
+      <dt data-ng-if="listing.taxid">Tax Id</dt>
+      <dd data-ng-if="listing.taxid">{{listing.taxid}}</dd>
+    </dl>
+
+    <div gmap loc="loc" opts="mapOpts" class="listing-map"></div>
+
+  </div>
+  <div class="full-col">
+    <h5>Public Remarks</h5>
+    <p>
+      {{listing.description}}
+    </p>
+  </div>
+  <div class="full-col" data-ng-if="listing.privateRemarks">
+    <h5>Private Remarks</h5>
+    <p>{{listing.privateRemarks}}</p>
+  </div>
+</div>

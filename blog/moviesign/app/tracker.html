@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Tracker Dummy HTML</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- build:css(.tmp) /styles/main.css -->
+  <link rel="stylesheet" href="/styles/main.css">
+  <!-- endbuild -->
+
+</head>
+<body>
+
+<div id="profilingQuestions"></div>
+
+<script>
+  servoAcct = 1
+  servoConfig = {"endpoint": "http://localhost:8080/api"}
+
+  var setupQuestions = function () {
+    var elt = document.getElementById("profilingQuestions");
+    window.servo.profilingQuestions(elt)
+  }
+</script>
+
+<!-- build:js /scripts/tr.js -->
+<script src="/scripts/dot.js"></script>
+<script src="/scripts/tracker.js"></script>
+<!-- endbuild -->
+
+</body>
+</html>
