@@ -10,12 +10,14 @@ As you can see just from our [list of tracks](http://codecademy.com/learn), ther
 ### There isn't anything magical about it
 You might hear your elders say that all these websites are created using some "magic". In reality, programming is just a combination of logic statements and mathematics. Think about coding in terms of cooking. First, you gather a list of ingredients and then combine them to create something else. In programming, the ingredients are a language's syntaxes and APIs which you combine together to create a useful program. Websites you visit every day (Google, Facebook, Twitter, etc.) are examples of big programs written by combining several ingredients together. You can create equally cool and useful stuff once you understand all the ingredients. Hence, coding is not some big, intimidating thing, but rather, it's something that you can learn.
 
-### It rarely works at first, but try and try and try again
+### Your code rarely works at first, but try and try and try again
 This is going to be true no matter how much experience you have. Your first attempt will be valiant as will your second and third attempts, but you usually will do something wrong. This isn't a bad thing. In fact, the best learning tool is making mistakes. Why? So you can learn from them. If you never make a mistake, you'll probably miss out on some important lessons about learning a language and its syntaxes. Don't be afraid to make a mistake. If you keep making a mistake and can't figure out why, ask our community via the Q&A Forums or [Groups](http://www.codecademy.com/groups). They'd love to help you figure out those tough problems you can't solve on your own.
 
-### Don't listen to negative criticism (5-7)
-There are lots of people out there that will say negative things about your code and about you as a programmer. Our advice is to not listen to them. There are too many people out there who are overly opinionated on what "good code" looks like. Good code is any code that works. If your code uses the worst approach possible but always returns good results, then you wrote good code. This brings us to our last point.
+### Don't listen to negative criticism
+There are lots of people out there that will say negative things about your code and about you as a programmer. Our advice is to not listen to them. There are too many people out there who are overly opinionated on what "good code" looks like. We define good code as any code that works. If your code uses the worst approach possible but always returns good results, then you wrote good code. Some people try to write these overly elegant solutions and end up writing code that doesn't always work.
 
 
 ### "I think I can, I think I can" (8)
-The best thing you can do is never give up and to keep trying. Practice makes perfect so go out and do what it takes to learn what you want. Go [learn something new or build a new project](http://codecademy.com/learn).
+The best thing you can do is never give up and to keep trying. Practice makes perfect so go out and do what it takes to learn what you want. Go [learn something new or build a new project](http://codecademy.com/learn). Always try to work on as many projects as possible whether they be school projects, work projects, or your own projects (especially this one!).
+
+In short, keep a positive attitude and remember you're doing this because you wanted to do it! These should keep you moving forward. If you find yourself lost, reach out to the community for help and guidance.
