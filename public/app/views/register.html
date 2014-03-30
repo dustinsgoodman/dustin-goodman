@@ -2,8 +2,6 @@
   <h2>Create Account</h2>
 </div>
 
-{{user}}
-
 <form class="form-horizontal" role="form" novalidate>
 
   <div class="form-group">
@@ -11,7 +9,7 @@
       First Name
     </label>
     <div class="col-sm-5">
-      <input type="text" class="form-control" id="firstName" placeholder="First Name" data-ng-model="user.first_name">
+      <input type="text" class="form-control" id="firstName" placeholder="First Name" data-ng-model="user.first_name" required>
     </div>
   </div>
 
@@ -20,7 +18,7 @@
       Last Name
     </label>
     <div class="col-sm-5">
-      <input type="text" class="form-control" id="lastName" placeholder="Last Name" data-ng-model="user.last_name">
+      <input type="text" class="form-control" id="lastName" placeholder="Last Name" data-ng-model="user.last_name" required>
     </div>
   </div>
 
@@ -29,7 +27,7 @@
       Email
     </label>
     <div class="col-sm-5">
-      <input type="email" class="form-control" id="email" placeholder="Email" data-ng-model="user.email">
+      <input type="email" class="form-control" id="email" placeholder="Email" data-ng-model="user.email" required>
     </div>
   </div>
 
@@ -38,7 +36,7 @@
       Password
     </label>
     <div class="col-sm-5">
-      <input type="password" class="form-control" id="password" placeholder="Password" data-ng-model="user.password">
+      <input type="password" class="form-control" id="password" placeholder="Password" data-ng-model="user.password" required>
     </div>
   </div>
 
@@ -47,7 +45,7 @@
       Confirm Password
     </label>
     <div class="col-sm-5">
-      <input type="password" class="form-control" id="password2" placeholder="Password" data-ng-model="user.password2">
+      <input type="password" class="form-control" id="password2" placeholder="Password" data-ng-model="user.password2" required>
     </div>
   </div>
 
