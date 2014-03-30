@@ -33,7 +33,7 @@ app.config([
         access: access.anon,
         resolve: {
           newUser: ['Restangular', function (Restangular) {
-            Restangular.all('users').one('sign_up').get().then(function (resp) {
+            return Restangular.all('users').one('sign_up').get().then(function (resp) {
               return resp.data;
             });
           }]
@@ -106,7 +106,7 @@ app.config([
 ]);
 
 app.run(['$rootScope', '$location', 'Auth', function ($rootScope, $location, Auth) {
-  $rootScope.$on('$routeChangeStart', function (event, next, current) {
+  $rootScope.$on('$routeChangeStart', function (event, next /*, current*/) {
     $rootScope.error = null;
     if (_.isUndefined(next.access)) { next.access = 0; }
     if (!Auth.authorize(next.access)) {
