@@ -51,9 +51,15 @@
           <div class="navbar-collapse collapse" data-collapse="isNavCollapsed">
             <ul class="nav navbar-nav navbar-right">
               <li><a href="/#/blog">Blog</a></li>
-              <li data-ng-if="!isLoggedIn"><a href="#">Log In</a></li>
-              <li data-ng-if="!isLoggedIn"><a href="/#/register">Register</a></li>
-              <li data-ng-if="isLoggedIn"><a href="#">Log Out</a></li>
+              <li data-ng-if="!isLoggedIn">
+                <a href="#">Log In</a>
+              </li>
+              <li data-ng-if="!isLoggedIn">
+                <a href="/#/register">Register</a>
+              </li>
+              <li data-ng-if="isLoggedIn">
+                <a href="#">Log Out</a>
+              </li>
             </ul>
           </div>
         </div>
