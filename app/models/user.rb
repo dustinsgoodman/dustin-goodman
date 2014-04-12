@@ -11,4 +11,12 @@ class User < ActiveRecord::Base
 
   validates :first_name, presence: true, length: { minimum: 1 }
   validates :last_name,  presence: true, length: { minimum: 1 }
+
+  before_save :set_display_name
+
+  protected
+
+  def set_display_name
+    self.display_name = "#{self.first_name} #{self.last_name[0]}."
+  end
 end
