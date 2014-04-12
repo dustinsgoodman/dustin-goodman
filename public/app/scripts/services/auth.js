@@ -1,31 +1,47 @@
 'use strict';
 
-angular.module('dustinGoodmanApp').factory('Auth', [function() {
+angular.module('dustinGoodmanApp').factory('Auth', ['Restangular', function (Restangular) {
   // Service logic
   var accessLevels = permissions.accessLevels,
       userRoles = permissions.userRoles,
-      defaultUser = {email: '', firstName: '', lastName: '', role: userRoles['public']},
+      defaultUser = {
+        'email': '',
+        'first_name': '',
+        'last_name': '',
+        'role': userRoles['public']
+      },
       currentUser = angular.fromJson(localStorage.user) || defaultUser;
 
-  // function changeUser(user) {
-  //   _.extend(currentUser, user);
-  // }
+  function changeUser(user) {
+    _.extend(currentUser, user);
+    if (user !== defaultUser) {
+      localStorage.setItem('user', angular.toJson(user));
+    } else {
+      localStorage.setItem('user', null);
+    }
+  }
 
   // Public API here
   return {
-    authorize: function(accessLevel, role) {
+    authorize: function (accessLevel, role) {
       if (_.isUndefined(role)) { role = currentUser.role; }
-      console.log(accessLevel.bitmask, role.bitmask);
-      return accessLevel.bitmask & role.bitmask;
+      return accessLevel.bitmask & role;
     },
-    isLoggedIn: function(user) {
+    isLoggedIn: function (user) {
       if (_.isUndefined(user)) { user = currentUser; }
-      return user.role.title === userRoles.user.title ||
-        user.role.title === userRoles.admin.title;
+      return user.role > 1;
     },
-    // register: function(user, success, error) {
-
-    // },
+    register: function (user, success, error) {
+      Restangular.all('users').post(user).then(
+        function (res) {
+          changeUser(res.data);
+          success(res);
+        },
+        function (res) {
+          error(res);
+        }
+      );
+    },
     // login: function(user, success, error) {
 
     // },
