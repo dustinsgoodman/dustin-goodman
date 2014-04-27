@@ -2,6 +2,17 @@
   <h2>Create Account</h2>
 </div>
 
+<div class="alert alert-danger" data-ng-if="errors">
+  <p>
+    Whoops! Something isn't quite right with your info. Here are the errors we detected:
+  </p>
+  <ul>
+    <li data-ng-repeat="error in errors | errors">
+      {{error}}
+    </li>
+  </ul>
+</div>
+
 <form class="form-horizontal" data-ng-submit="register()" role="form" novalidate>
 
   <div class="form-group">
