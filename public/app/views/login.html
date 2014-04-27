@@ -1,0 +1,41 @@
+<div class="page-header">
+  <h2>Log In</h2>
+</div>
+
+<div class="alert alert-danger" data-ng-if="errors">
+  <p>
+    Whoops! Something isn't quite right with your info. Here are the errors we detected:
+  </p>
+  <ul>
+    <li data-ng-repeat="error in errors | errors">
+      {{error}}
+    </li>
+  </ul>
+</div>
+
+<form class="form-horizontal" data-ng-submit="login()" role="form" novalidate>
+
+  <div class="form-group">
+    <label for="email" class="col-sm-4 control-label">
+      Email
+    </label>
+    <div class="col-sm-5">
+      <input type="email" class="form-control" id="email" placeholder="Email" data-ng-model="user.email" required>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="password" class="col-sm-4 control-label">
+      Password
+    </label>
+    <div class="col-sm-5">
+      <input type="password" class="form-control" id="password" placeholder="Password" data-ng-model="user.password" required>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="col-sm-offset-4 col-sm-2">
+      <button type="submit" class="btn btn-default">Login</button>
+    </div>
+  </div>
+</form>
