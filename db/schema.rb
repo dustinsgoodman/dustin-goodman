@@ -33,16 +33,17 @@ ActiveRecord::Schema.define(version: 20140201231344) do
   add_index "blog_posts", ["user_id", "title"], name: "index_blog_posts_on_user_id_and_title", unique: true, using: :btree
 
   create_table "users", force: true do |t|
-    t.string   "first_name",             default: "", null: false
-    t.string   "last_name",              default: "", null: false
+    t.string   "first_name",             default: "",     null: false
+    t.string   "last_name",              default: "",     null: false
     t.string   "display_name"
-    t.integer  "role",                   default: 2,  null: false
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
+    t.string   "role",                   default: "user", null: false
+    t.boolean  "is_banned",              default: false,  null: false
+    t.string   "email",                  default: "",     null: false
+    t.string   "encrypted_password",     default: "",     null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
+    t.integer  "sign_in_count",          default: 0,      null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
