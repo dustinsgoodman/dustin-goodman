@@ -27,5 +27,7 @@ gem "devise", "~> 3.2.2"
 
 group :development do
   # Middleware
-  gem "rack-cors", "~> 0.2.9"
+  gem 'rack-cors', '~> 0.2.9'
+
+  gem 'debugger', '~> 1.6.6'
 end
