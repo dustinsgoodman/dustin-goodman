@@ -14,7 +14,8 @@ app.config([
   '$locationProvider',
   '$httpProvider',
   'RestangularProvider',
-  function ($routeProvider, $locationProvider, $httpProvider, RestangularProvider) {
+  'permissions',
+  function ($routeProvider, $locationProvider, $httpProvider, RestangularProvider, permissions) {
     var access;
 
     RestangularProvider.setBaseUrl('/api');
@@ -23,26 +24,29 @@ app.config([
     access = permissions.accessLevels;
     $routeProvider
       .when('/', {
-        templateUrl: '/views/home.html',
+        access: access.public,
         controller: 'HomeCtrl',
-        access: access.public
+        templateUrl: '/views/home.html',
       })
       .when('/register', {
-        templateUrl: '/views/register.html',
-        controller: 'RegisterCtrl',
         access: access.anon,
+        controller: 'RegisterCtrl',
+        templateUrl: '/views/register.html',
         resolve: {
-          newUser: ['Restangular', function (Restangular) {
-            return Restangular.all('users').one('sign_up').get().then(function (resp) {
-              return resp.data;
-            });
+          newUser: ['User', function (User) {
+            return User.signup();
           }]
         }
       })
+      .when('/login', {
+        access: access.anon,
+        controller: 'LoginCtrl',
+        templateUrl: '/views/login.html'
+      })
       .when('/blog', {
-        templateUrl: 'views/blog/index.html',
-        controller: 'BlogCtrl',
         access: access.public,
+        controller: 'BlogCtrl',
+        templateUrl: 'views/blog/index.html',
         resolve: {
           posts: ['Restangular', function (Restangular) {
             Restangular.all('blog_posts').getList().then(function (resp) {
@@ -52,9 +56,9 @@ app.config([
         }
       })
       .when('/blog/new', {
-        templateUrl: 'views/blog/new.html',
-        controller: 'BlogNewCtrl',
         access: access.admin,
+        controller: 'BlogNewCtrl',
+        templateUrl: 'views/blog/new.html',
         resolve: {
           newPost: ['Restangular', function (Restangular) {
             Restangular.all('blog_posts').one('new').get().then(function (resp) {
@@ -89,6 +93,8 @@ app.config([
               case 404:
                 $location.path('/404');
                 break;
+              case 422:
+                break;
               case 500:
                 $location.path('/500');
                 break;
@@ -105,16 +111,21 @@ app.config([
   }
 ]);
 
-app.run(['$rootScope', '$location', 'Auth', function ($rootScope, $location, Auth) {
-  $rootScope.$on('$routeChangeStart', function (event, next /*, current*/) {
-    $rootScope.error = null;
-    if (_.isUndefined(next.access)) { next.access = 0; }
-    if (!Auth.authorize(next.access)) {
-      if (Auth.isLoggedIn()) {
-        $location.path('/');
-      } else {
-        $location.path('/login');
+app.run([
+  '$rootScope',
+  '$location',
+  'Auth',
+  function ($rootScope, $location, Auth) {
+    $rootScope.$on('$routeChangeStart', function (event, next, current) {
+      $rootScope.errors = null;
+      if (_.isUndefined(next.access)) { next.access = 0; }
+      if (!Auth.authorize(next.access)) {
+        if (Auth.isLoggedIn()) {
+          $location.path('/');
+        } else {
+          $location.path('/login');
+        }
       }
-    }
-  });
-}]);
+    });
+  }
+]);
